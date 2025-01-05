@@ -1,0 +1,1 @@
+C:\Users\User\Desktop\TrackerBuddy\TrackerBuddy\TrackerBuddy.csproj;x64

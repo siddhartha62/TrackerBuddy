@@ -1,0 +1,167 @@
+﻿@page "/cashoutflow"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using System.Globalization
+
+<h1>Cash Outflows</h1>
+
+<div class="currency-selector">
+    <label for="currency">Select Currency:</label>
+    <select id="currency" @bind="SelectedCurrency" class="form-control">
+        <option value="USD">$ (USD)</option>
+        <option value="EUR">€ (EUR)</option>
+        <option value="GBP">£ (GBP)</option>
+        <option value="NPR">रू (NPR)</option>
+    </select>
+</div>
+
+<div class="outflow-summary">
+    <p><strong>Total Outflows:</strong> @DisplayCurrency(TotalOutflows)</p>
+    <p><strong>Highest Outflow:</strong> @DisplayCurrency(HighestOutflow)</p>
+    <p><strong>Lowest Outflow:</strong> @DisplayCurrency(LowestOutflow)</p>
+</div>
+
+<h2>Add New Outflow</h2>
+
+<EditForm Model="newOutflow" OnValidSubmit="HandleCashOutflowSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="amount">Amount</label>
+        <InputNumber id="amount" @bind-Value="newOutflow.Debit" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="date">Date</label>
+        <InputDate id="date" @bind-Value="newOutflow.Date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category</label>
+        <InputText id="category" @bind-Value="newOutflow.Category" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="notes">Notes</label>
+        <InputTextArea id="notes" @bind-Value="newOutflow.Description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Outflow</button>
+    </div>
+</EditForm>
+
+<h2>Recent Outflows</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (CashOutflows.Any())
+        {
+            @foreach (var outflow in CashOutflows.OrderByDescending(o => o.Date))
+            {
+                <tr>
+                    <td>@outflow.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@DisplayCurrency(outflow.Debit)</td>
+                    <td>@outflow.Category</td>
+                    <td>@outflow.Description</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No cash outflows recorded.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Transaction> CashOutflows = new();
+    private decimal TotalOutflows = 0;
+    private decimal HighestOutflow = 0;
+    private decimal LowestOutflow = 0;
+    private Transaction newOutflow = new Transaction();
+    private decimal MainBalance = 0; // To check sufficient balance
+    private string SelectedCurrency = "USD"; // Default currency
+
+    protected override void OnInitialized()
+    {
+        var data = UserService.LoadUsers(); // Load data from the JSON database
+        CashOutflows = data.Transactions.Where(t => t.Debit > 0).ToList();
+
+        // Calculate totals, highest, and lowest outflows
+        if (CashOutflows.Any())
+        {
+            TotalOutflows = CashOutflows.Sum(t => t.Debit);
+            HighestOutflow = CashOutflows.Max(t => t.Debit);
+            LowestOutflow = CashOutflows.Min(t => t.Debit);
+        }
+
+        // Calculate Main Balance
+        MainBalance = data.Transactions.Sum(t => t.Credit) - data.Transactions.Sum(t => t.Debit);
+    }
+
+    private void HandleCashOutflowSubmit()
+    {
+        if (newOutflow.Debit <= 0)
+        {
+            Console.WriteLine("Outflow amount must be greater than zero.");
+            return;
+        }
+
+        if (newOutflow.Debit > MainBalance)
+        {
+            Console.WriteLine("Insufficient balance for this outflow.");
+            return;
+        }
+
+        // Assign new outflow properties
+        newOutflow.Id = CashOutflows.Count + 1;
+        if (newOutflow.Date == default)
+        {
+            newOutflow.Date = DateTime.Now; // Default to current date
+        }
+        newOutflow.Credit = 0; // Ensure it's a cash outflow
+
+        // Add new outflow
+        var data = UserService.LoadUsers();
+        data.Transactions.Add(newOutflow);
+
+        // Save updated data
+        UserService.SaveUsers(data);
+
+        // Recalculate totals and balance
+        CashOutflows.Add(newOutflow);
+        TotalOutflows = CashOutflows.Sum(t => t.Debit);
+        HighestOutflow = CashOutflows.Max(t => t.Debit);
+        LowestOutflow = CashOutflows.Min(t => t.Debit);
+        MainBalance -= newOutflow.Debit;
+
+        // Reset form
+        newOutflow = new Transaction();
+    }
+
+    private string DisplayCurrency(decimal amount)
+    {
+        var culture = SelectedCurrency switch
+        {
+            "USD" => new CultureInfo("en-US"), // US Dollar
+            "EUR" => new CultureInfo("fr-FR"), // Euro
+            "GBP" => new CultureInfo("en-GB"), // British Pound
+            "NPR" => new CultureInfo("ne-NP"), // Nepalese Rupee
+            _ => new CultureInfo("en-US"), // Default to USD
+        };
+
+        return string.Format(culture, "{0:C}", amount);
+    }
+}

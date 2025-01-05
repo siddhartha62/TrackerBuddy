@@ -1,0 +1,61 @@
+h1[b-fered2aofd], h2[b-fered2aofd] {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.outflow-summary[b-fered2aofd] {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.table[b-fered2aofd] {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+    .table th[b-fered2aofd], .table td[b-fered2aofd] {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .table th[b-fered2aofd] {
+        background-color: #f2f2f2;
+    }
+
+.form-group[b-fered2aofd] {
+    margin-bottom: 15px;
+}
+
+    .form-group label[b-fered2aofd] {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+.form-control[b-fered2aofd] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn[b-fered2aofd] {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary[b-fered2aofd] {
+    background-color: #6200ea;
+    color: #fff;
+}
+
+    .btn-primary:hover[b-fered2aofd] {
+        background-color: #3700b3;
+    }

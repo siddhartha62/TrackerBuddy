@@ -1,0 +1,198 @@
+﻿@page "/transactions"
+@using TrackerBuddy.Models
+@inject UserService UserService
+
+<h1>Transactions</h1>
+
+<div class="filter-sort-container">
+    <input type="text" @bind="SearchQuery" placeholder="Search transactions..." class="form-control" />
+    <select @bind="SelectedType" class="form-control">
+        <option value="">All Types</option>
+        <option value="Inflow">Inflow</option>
+        <option value="Outflow">Outflow</option>
+        <option value="Debt">Debt</option>
+    </select>
+    <input type="date" @bind="StartDate" class="form-control" />
+    <input type="date" @bind="EndDate" class="form-control" />
+    <select @bind="SortBy" class="form-control">
+        <option value="DateAsc">Sort by Date (Asc)</option>
+        <option value="DateDesc">Sort by Date (Desc)</option>
+    </select>
+    <button class="btn btn-primary" @onclick="FilterTransactions">Filter Transactions</button>
+</div>
+
+<div class="transaction-summary-container">
+    <div class="transaction-summary">
+        <h3>Transaction Summary</h3>
+        <p><strong>Total Transactions:</strong> @TotalTransactions</p>
+        <p><strong>Net Total:</strong> @DisplayCurrency(NetTotal)</p>
+    </div>
+
+    <div class="highest-lowest">
+        <h3>Highest Transactions</h3>
+        <ul>
+            <li><strong>Inflow:</strong> @DisplayCurrency(HighestInflow)</li>
+            <li><strong>Outflow:</strong> @DisplayCurrency(HighestOutflow)</li>
+            <li><strong>Debt:</strong> @DisplayCurrency(HighestDebt)</li>
+        </ul>
+    </div>
+    <div class="highest-lowest">
+        <h3>Lowest Transactions</h3>
+        <ul>
+            <li><strong>Inflow:</strong> @DisplayCurrency(LowestInflow)</li>
+            <li><strong>Outflow:</strong> @DisplayCurrency(LowestOutflow)</li>
+            <li><strong>Debt:</strong> @DisplayCurrency(LowestDebt)</li>
+        </ul>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Tags</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (FilteredTransactions != null && FilteredTransactions.Any())
+        {
+            @foreach (var transaction in FilteredTransactions)
+            {
+                <tr>
+                    <td>@transaction.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@transaction.Description</td>
+                    <td>@transaction.Type</td>
+                    <td>@DisplayCurrency(transaction.Debit > 0 ? -transaction.Debit : transaction.Credit)</td>
+                    <td>@transaction.Tags</td>
+                    <td>@transaction.Notes</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No transactions available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Transaction> AllTransactions = new();
+    private List<Transaction> FilteredTransactions = new();
+    private string SearchQuery = "";
+    private string SelectedType = "";
+    private DateTime? StartDate = null;
+    private DateTime? EndDate = null;
+    private string SortBy = "DateDesc";
+
+    private int TotalTransactions = 0;
+    private decimal NetTotal = 0;
+
+    private decimal HighestInflow = 0;
+    private decimal LowestInflow = 0;
+    private decimal HighestOutflow = 0;
+    private decimal LowestOutflow = 0;
+    private decimal HighestDebt = 0;
+    private decimal LowestDebt = 0;
+
+    private string SelectedCurrency = "USD"; // Default currency
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            var data = UserService.LoadUsers();
+            AllTransactions = data?.Transactions ?? new List<Transaction>();
+
+            CalculateSummary();
+            FilteredTransactions = AllTransactions.ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error initializing transactions: {ex.Message}");
+        }
+    }
+
+    private void CalculateSummary()
+    {
+        TotalTransactions = AllTransactions.Count;
+
+        NetTotal = AllTransactions.Sum(t => t.Credit - t.Debit);
+
+        HighestInflow = AllTransactions.Any(t => t.Credit > 0)
+            ? AllTransactions.Where(t => t.Credit > 0).Max(t => t.Credit)
+            : 0;
+
+        LowestInflow = AllTransactions.Any(t => t.Credit > 0)
+            ? AllTransactions.Where(t => t.Credit > 0).Min(t => t.Credit)
+            : 0;
+
+        HighestOutflow = AllTransactions.Any(t => t.Debit > 0)
+            ? AllTransactions.Where(t => t.Debit > 0).Max(t => t.Debit)
+            : 0;
+
+        LowestOutflow = AllTransactions.Any(t => t.Debit > 0)
+            ? AllTransactions.Where(t => t.Debit > 0).Min(t => t.Debit)
+            : 0;
+
+        HighestDebt = AllTransactions.Any(t => t.Type == "Debt")
+            ? AllTransactions.Where(t => t.Type == "Debt").Max(t => t.Debit)
+            : 0;
+
+        LowestDebt = AllTransactions.Any(t => t.Type == "Debt")
+            ? AllTransactions.Where(t => t.Type == "Debt").Min(t => t.Debit)
+            : 0;
+    }
+
+    private void FilterTransactions()
+    {
+        FilteredTransactions = AllTransactions;
+
+        if (!string.IsNullOrWhiteSpace(SearchQuery))
+        {
+            FilteredTransactions = FilteredTransactions
+                .Where(t => t.Description?.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ?? false)
+                .ToList();
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelectedType))
+        {
+            FilteredTransactions = FilteredTransactions
+                .Where(t => t.Type?.Equals(SelectedType, StringComparison.OrdinalIgnoreCase) ?? false)
+                .ToList();
+        }
+
+        if (StartDate.HasValue && EndDate.HasValue)
+        {
+            FilteredTransactions = FilteredTransactions
+                .Where(t => t.Date >= StartDate && t.Date <= EndDate)
+                .ToList();
+        }
+
+        FilteredTransactions = SortBy switch
+        {
+            "DateAsc" => FilteredTransactions.OrderBy(t => t.Date).ToList(),
+            "DateDesc" => FilteredTransactions.OrderByDescending(t => t.Date).ToList(),
+            _ => FilteredTransactions
+        };
+    }
+
+    private string DisplayCurrency(decimal amount)
+    {
+        var culture = SelectedCurrency switch
+        {
+            "USD" => new System.Globalization.CultureInfo("en-US"),
+            "EUR" => new System.Globalization.CultureInfo("fr-FR"),
+            "GBP" => new System.Globalization.CultureInfo("en-GB"),
+            "NPR" => new System.Globalization.CultureInfo("ne-NP"),
+            _ => new System.Globalization.CultureInfo("en-US"),
+        };
+
+        return string.Format(culture, "{0:C}", amount);
+    }
+}

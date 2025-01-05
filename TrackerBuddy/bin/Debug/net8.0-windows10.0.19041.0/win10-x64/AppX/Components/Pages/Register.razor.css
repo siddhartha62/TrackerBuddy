@@ -1,0 +1,138 @@
+﻿/* Center the register container */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    max-width: 90%; /* Ensure responsiveness */
+    padding: 25px;
+    margin: 50px auto;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #ffffff, #f3f3f3); /* Subtle gradient */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .register-container:hover {
+        transform: translateY(-5px); /* Adds slight movement on hover */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    }
+
+/* Header styling */
+h3, h4 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #4a148c; /* Rich purple color */
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+.separator {
+    width: 100%; /* Full width */
+    height: 2px; /* Line thickness */
+    margin: 15px 0; /* Spacing around the line */
+    background: linear-gradient(90deg, #4a148c, #6200ea); /* Purple gradient separator */
+    border: none; /* Remove default hr border */
+}
+
+/* Input fields styling */
+input, select {
+    width: 100%;
+    margin: 15px 0;
+    padding: 14px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: #f7f7f7;
+    color: #333; /* Dark text for better readability */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    input:focus, select:focus {
+        border-color: #6200ea;
+        box-shadow: 0 0 8px rgba(98, 0, 234, 0.5); /* Glow effect on focus */
+        outline: none;
+    }
+
+/* Select dropdown styling */
+select {
+    appearance: none; /* Remove default browser styling */
+    background: #f7f7f7 url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%234a148c' d='M2 0L0 2h4z'/%3E%3C/svg%3E") no-repeat right 10px center;
+    background-size: 12px;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 14px 18px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #6200ea, #4a148c);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+    button:hover {
+        background: linear-gradient(135deg, #4a148c, #6200ea); /* Reversed gradient on hover */
+        transform: scale(1.05); /* Slight zoom effect */
+    }
+
+/* Link to login */
+a {
+    color: #6200ea;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: #4a148c; /* Darker purple on hover */
+        text-decoration: underline;
+    }
+
+/* Error message styling */
+.error-message {
+    color: #e53935; /* Highlight errors in red */
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* General body background */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #e8eaf6, #c5cae9); /* Soft purple gradient */
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .register-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h3, h4 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}

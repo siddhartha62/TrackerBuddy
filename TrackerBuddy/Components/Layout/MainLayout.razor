@@ -1,0 +1,38 @@
+﻿@inherits LayoutComponentBase
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+
+<div class="page">
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Header Section -->
+      
+
+
+        <!-- Page Content -->
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private string UserName = "Guest";
+
+    protected override void OnInitialized()
+    {
+        var userData = UserService.LoadUsers();
+        UserName = userData.Users.FirstOrDefault()?.Username ?? "Guest";
+    }
+
+    private void Logout()
+    {
+        // Redirect to login page after logout
+        NavigationManager.NavigateTo("/");
+    }
+}

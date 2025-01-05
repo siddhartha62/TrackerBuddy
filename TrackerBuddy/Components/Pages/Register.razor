@@ -1,0 +1,42 @@
+﻿@page "/register"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using TrackerBuddy.Components.Layout
+@layout FirstLayout
+
+<body>
+    <div class="register-container">
+        <h3>Register</h3>
+        <hr class="separator" />
+        <h4>Register Account</h4>
+        @if (!string.IsNullOrEmpty(Message))
+        {
+            <p class="error-message">@Message</p>
+        }
+
+        <input @bind="RegisterUsername" placeholder="Full Name" />
+
+
+        <input @bind="RegisterEmail" placeholder="Email" type="email" />
+
+
+        <input @bind="RegisterPassword" placeholder="Password" type="password" />
+
+
+        <input @bind="ConfirmPassword" placeholder="Confirm Password" type="password" />
+
+
+        <select @bind="PreferredCurrency">
+            <option value="" disabled>Select Currency</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="NPR">NPR</option>
+        </select>
+
+        <button @onclick="RegisterPage">Register</button>
+        <a @onclick="NavigateToLogin" style="cursor: pointer;">Already have an account? Login</a>
+    </div>
+</body>
+

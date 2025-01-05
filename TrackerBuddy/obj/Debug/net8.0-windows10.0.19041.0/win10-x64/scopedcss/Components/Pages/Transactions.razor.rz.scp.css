@@ -1,0 +1,162 @@
+/* General Page Styling */
+body[b-d3fj8pj8d4] {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    color: #152042;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Page Title */
+h1[b-d3fj8pj8d4] {
+    font-size: 2rem;
+    text-align: center;
+    color: #152042;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #6276b3;
+    padding-bottom: 10px;
+}
+
+/* Filter and Sort Container */
+.filter-sort-container[b-d3fj8pj8d4] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    background-color: #b6bfdb;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.filter-sort-container:hover[b-d3fj8pj8d4] {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Hover effect */
+}
+
+.filter-sort-container input[b-d3fj8pj8d4],
+.filter-sort-container select[b-d3fj8pj8d4],
+.filter-sort-container button[b-d3fj8pj8d4] {
+    flex: 1 1 150px;
+    padding: 10px;
+    border: 1px solid #6276b3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background-color: #e3e9f2;
+    color: #152042;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-sort-container input:hover[b-d3fj8pj8d4],
+.filter-sort-container select:hover[b-d3fj8pj8d4],
+.filter-sort-container button:hover[b-d3fj8pj8d4] {
+    background-color: #d0d8f0; /* Lighter hover color */
+    box-shadow: 0 0 6px rgba(98, 118, 179, 0.5); /* Glow effect on hover */
+}
+
+/* Filter Button Specific */
+.filter-sort-container button[b-d3fj8pj8d4] {
+    background-color: #152042;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+.filter-sort-container button:hover[b-d3fj8pj8d4] {
+    background-color: #6276b3;
+    transform: scale(1.03); /* Slight zoom on hover */
+}
+
+/* Transaction Summary */
+.transaction-summary-container[b-d3fj8pj8d4] {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.transaction-summary[b-d3fj8pj8d4],
+.highest-lowest[b-d3fj8pj8d4] {
+    flex: 1 1 calc(33.33% - 20px);
+    background-color: #e3e9f2;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.3s ease; /* Hover effects */
+}
+
+.transaction-summary:hover[b-d3fj8pj8d4],
+.highest-lowest:hover[b-d3fj8pj8d4] {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+}
+
+.transaction-summary h3[b-d3fj8pj8d4],
+.highest-lowest h3[b-d3fj8pj8d4] {
+    font-size: 1.2rem;
+    color: #152042;
+    margin-bottom: 10px;
+}
+
+.transaction-summary p[b-d3fj8pj8d4],
+.highest-lowest ul li[b-d3fj8pj8d4] {
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+/* Recent Transactions Table */
+.table[b-d3fj8pj8d4] {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th[b-d3fj8pj8d4],
+.table td[b-d3fj8pj8d4] {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th[b-d3fj8pj8d4] {
+    background-color: #152042;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table tr:nth-child(even)[b-d3fj8pj8d4] {
+    background-color: #e4eaf5; /* Light row background */
+}
+
+.table tr:hover[b-d3fj8pj8d4] {
+    background-color: #d0d8f0; /* Hover effect for rows */
+    transition: background-color 0.3s ease;
+}
+
+.table .text-center[b-d3fj8pj8d4] {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .transaction-summary-container[b-d3fj8pj8d4] {
+        flex-direction: column;
+    }
+
+    .transaction-summary[b-d3fj8pj8d4],
+    .highest-lowest[b-d3fj8pj8d4] {
+        flex: 1 1 100%;
+    }
+
+    .filter-sort-container input[b-d3fj8pj8d4],
+    .filter-sort-container select[b-d3fj8pj8d4],
+    .filter-sort-container button[b-d3fj8pj8d4] {
+        width: 100%;
+    }
+}

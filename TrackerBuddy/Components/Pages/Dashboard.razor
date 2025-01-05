@@ -1,0 +1,116 @@
+﻿@page "/dashboard"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+
+<div class="dashboard-container">
+
+    <div class="main-content">
+        <header>
+            <h3>Welcome, @UserName</h3> <!-- Dynamically display user's name -->
+            <div class="date-filter">
+                <label>Start Date:</label>
+                <input type="date" @bind="StartDate" />
+                <label>End Date:</label>
+                <input type="date" @bind="EndDate" />
+                <button @onclick="ApplyDateFilter"> Filter</button>
+            </div>
+            <button @onclick="Logout" class="logout-btn">Logout</button>
+        </header>
+
+        <div class="stats">
+            <div class="card">
+                <h4>Total Inflows</h4>
+                <h1>@TotalInflows</h1> <!-- Dynamically display Total Inflows -->
+
+            </div>
+            <div class="card">
+                <h4>Total Outflows</h4>
+                <h1>@TotalOutflows</h1> <!-- Dynamically display Total Outflows -->
+
+            </div>
+            <div class="card">
+                <h4>Total Balance</h4>
+                <h1>@NetBalance</h1> <!-- Display Net Balance dynamically -->
+
+            </div>
+            <div class="card">
+                <h3>Remaining Debt</h3>
+                <h1>@RemainingDebt</h1>
+            </div>
+        </div>
+
+        <div class="details">
+            <div class="transactions-overview">
+                <h2>Pending Debts</h2>
+                <ul>
+                    @if (PendingDebts.Any())
+                    {
+                        @foreach (var debt in PendingDebts)
+                        {
+                            <li>
+                                <h3><strong>@debt.Source:</strong> @debt.RemainingAmount</h3>
+                                <h3>(Due: @debt.DueDate.ToShortDateString())</h3>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <p>No pending debts available.</p>
+                    }
+                </ul>
+
+            </div>
+            <div class="transactions-overview">
+                <h4>Transaction Overview</h4>
+                <ul>
+                    <li>Total Transactions: @TotalTransactions</li>
+                    <li>Highest Transaction: @HighestTransaction</li>
+                    <li>Lowest Transaction: @LowestTransaction</li>
+                    <li>Average Transaction: @AverageTransaction</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="recent-transactions">
+            <h4>Recent Transactions</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Main Balance</th>
+                        <th>Debit</th>
+                        <th>Credit</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (data?.Transactions != null && data.Transactions.Count > 0)
+                    {
+                        @foreach (var transaction in data.Transactions
+                       .OrderByDescending(t => t.Date)
+                       .Take(4))
+                        {
+                            <tr>
+                                <td>@transaction.Id</td>
+                                <td>@((data.Transactions.Sum(t => t.Credit) - data.Transactions.Sum(t => t.Debit)))</td>
+                                <td>@transaction.Debit</td>
+                                <td>@transaction.Credit</td>
+                                <td>@transaction.Date.ToString("MM/dd/yyyy")</td>
+                                <td>@transaction.Description</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center">No transactions available.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@page "/"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using TrackerBuddy.Components.Layout
+@layout FirstLayout
+
+<body>
+    <div class="login-container">
+        <h3>Login</h3>
+        <hr class="separator" />
+        <p>Login to your account</p>
+        @if (!string.IsNullOrEmpty(Message))
+        {
+            <p class="error-message">@Message</p>
+        }
+        <input @bind="LoginUsername" placeholder="Username" />
+        <input @bind="LoginPassword" placeholder="Password" type="password" />
+        <button @onclick="LoginPage">Login</button>
+        <a href="/register">Register</a>
+    </div>
+</body>
+
+

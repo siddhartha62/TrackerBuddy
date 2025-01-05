@@ -1,0 +1,114 @@
+/* Center the login container */
+div[b-2b91w3jfi1] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    width: 400px;
+    height: 500px;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+    div:hover[b-2b91w3jfi1] {
+        transform: translateY(-5px); /* Adds slight movement on hover */
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    }
+
+/* Header */
+h3[b-2b91w3jfi1] {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #6200ea; /* Purple header for vibrancy */
+    font-weight: bold;
+}
+
+.separator[b-2b91w3jfi1] {
+    width: 100%; /* Full width */
+    height: 1px; /* Line thickness */
+    margin: 10px 0; /* Spacing around the line */
+    background-color: #000000; /* Light gray color */
+    border: none; /* Remove default hr border */
+}
+
+/* Input fields */
+input[b-2b91w3jfi1] {
+    width: 100%;
+    margin: 15px 0;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    input:focus[b-2b91w3jfi1] {
+        border-color: #6200ea;
+        box-shadow: 0 0 5px rgba(98, 0, 234, 0.5); /* Glow effect on focus */
+        outline: none;
+    }
+
+/* Button */
+button[b-2b91w3jfi1] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #6200ea, #3700b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+    button:hover[b-2b91w3jfi1] {
+        background: linear-gradient(135deg, #3700b3, #6200ea); /* Reversed gradient on hover */
+        transform: scale(1.05); /* Slight zoom effect */
+    }
+
+/* Link to register */
+a[b-2b91w3jfi1] {
+    color: #6200ea;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+    a:hover[b-2b91w3jfi1] {
+        color: #3700b3; /* Darker purple on hover */
+        text-decoration: underline;
+    }
+
+/* Error message styling */
+p[b-2b91w3jfi1] {
+    color: #000000; /* Eye-catching red for errors */
+    font-size: 20px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* General body background */
+body[b-2b91w3jfi1] {
+    font-family: 'Arial', sans-serif;
+    background-color: #808080;
+    background: url('/images/background.jpg') no-repeat center center fixed; /* Path to the background image */
+    background-size: cover; /* Ensures the image covers the entire background */
+    margin: 0;
+    height: 785px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,150 @@
+﻿@page "/cashinflow"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@using System.Globalization
+
+<h1>Cash Inflows</h1>
+
+<div class="currency-selector">
+    <label for="currency">Select Currency:</label>
+    <select id="currency" @bind="SelectedCurrency" class="form-control">
+        <option value="USD">$ (USD)</option>
+        <option value="EUR">€ (EUR)</option>
+        <option value="GBP">£ (GBP)</option>
+        <option value="NPR">रू (NPR)</option>
+    </select>
+</div>
+
+<div class="inflow-summary">
+    <p><strong>Total Inflows:</strong> @DisplayCurrency(TotalInflows)</p>
+    <p><strong>Highest Inflow:</strong> @DisplayCurrency(HighestInflow)</p>
+    <p><strong>Lowest Inflow:</strong> @DisplayCurrency(LowestInflow)</p>
+</div>
+
+<h2>Add New Cash Inflow</h2>
+
+<EditForm Model="newTransaction" OnValidSubmit="HandleCashInflowSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="credit">Credit Amount</label>
+        <InputNumber id="credit" @bind-Value="newTransaction.Credit" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <InputText id="description" @bind-Value="newTransaction.Description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Cash Inflow</button>
+    </div>
+</EditForm>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Credit</th>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (CashInflows.Any())
+        {
+            @foreach (var transaction in CashInflows.OrderByDescending(t => t.Date))
+            {
+                <tr>
+                    <td>@transaction.Id</td>
+                    <td>@DisplayCurrency(transaction.Credit)</td>
+                    <td>@transaction.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@transaction.Description</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No cash inflows recorded.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Transaction> CashInflows = new();
+    private decimal TotalInflows = 0;
+    private decimal HighestInflow = 0;
+    private decimal LowestInflow = 0;
+    private Transaction newTransaction = new Transaction();
+    private string SelectedCurrency = "USD"; // Default currency
+
+    protected override void OnInitialized()
+    {
+        var data = UserService.LoadUsers(); // Load data from the JSON database
+        CashInflows = data.Transactions.Where(t => t.Credit > 0).ToList();
+
+        if (CashInflows.Any())
+        {
+            TotalInflows = CashInflows.Sum(t => t.Credit);
+            HighestInflow = CashInflows.Max(t => t.Credit);
+            LowestInflow = CashInflows.Min(t => t.Credit);
+        }
+    }
+
+    private void HandleCashInflowSubmit()
+    {
+        var data = UserService.LoadUsers(); // Reload data
+
+        if (data.Transactions == null)
+        {
+            data.Transactions = new List<Transaction>(); // Ensure Transactions list is initialized
+        }
+
+        // Validate Credit amount
+        if (newTransaction.Credit <= 0)
+        {
+            // Handle invalid credit amounts (e.g., display an error)
+            return;
+        }
+
+        // Assign new transaction properties
+        newTransaction.Id = data.Transactions.Count + 1;
+        newTransaction.Date = DateTime.Now;
+        newTransaction.Debit = 0; // Ensure it's a cash inflow, so no debit
+
+        // Add new transaction to the list
+        data.Transactions.Add(newTransaction);
+
+        // Save updated data
+        UserService.SaveUsers(data);
+
+        // Recalculate totals and inflows
+        CashInflows = data.Transactions.Where(t => t.Credit > 0).ToList();
+        if (CashInflows.Any())
+        {
+            TotalInflows = CashInflows.Sum(t => t.Credit);
+            HighestInflow = CashInflows.Max(t => t.Credit);
+            LowestInflow = CashInflows.Min(t => t.Credit);
+        }
+
+        // Reset form
+        newTransaction = new Transaction();
+    }
+
+    private string DisplayCurrency(decimal amount)
+    {
+        var culture = SelectedCurrency switch
+        {
+            "USD" => new CultureInfo("en-US"), // US Dollar
+            "EUR" => new CultureInfo("fr-FR"), // Euro
+            "GBP" => new CultureInfo("en-GB"), // British Pound
+            "NPR" => new CultureInfo("ne-NP"), // Nepalese Rupee
+            _ => new CultureInfo("en-US"), // Default to USD
+        };
+
+        return string.Format(culture, "{0:C}", amount);
+    }
+}
