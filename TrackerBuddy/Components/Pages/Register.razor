@@ -1,0 +1,51 @@
+﻿@page "/register"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using TrackerBuddy.Components.Layout
+@layout FirstLayout
+
+<body>
+    <div class="register-wrapper">
+        <div class="welcome-section">
+            <h1>Welcome to the website</h1>
+            <p>Register to get started and manage your account efficiently.</p>
+        </div>
+        <div class="register-container">
+            <h3>Create an Account</h3>
+            <p>Fill out the form below to register.</p>
+            @if (!string.IsNullOrEmpty(Message))
+            {
+                <p class="error-message">@Message</p>
+            }
+            <div class="input-container">
+                <span class="icon">&#x1F464;</span>
+                <input @bind="RegisterUsername" placeholder="Full Name" />
+            </div>
+            <div class="input-container">
+                <span class="icon">&#x1F4E7;</span>
+                <input @bind="RegisterEmail" placeholder="Email" type="email" />
+            </div>
+            <div class="input-container">
+                <span class="icon">&#x1F512;</span>
+                <input @bind="RegisterPassword" placeholder="Password" type="password" />
+            </div>
+            <div class="input-container">
+                <span class="icon">&#x1F512;</span>
+                <input @bind="ConfirmPassword" placeholder="Confirm Password" type="password" />
+            </div>
+            <div class="input-container">
+                <span class="icon">&#x1F4B0;</span>
+                <select @bind="PreferredCurrency">
+                    <option value="" disabled>Select Currency</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="NPR">NPR</option>
+                </select>
+            </div>
+            <button @onclick="RegisterPage">Register</button>
+            <a @onclick="NavigateToLogin" class="login-link">Already have an account? Login</a>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,196 @@
+﻿/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f5f0;
+    margin: 0;
+    padding: 0;
+    color: #4a4a4a;
+}
+
+/* Page Title */
+h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #f97316; /* Orange color */
+}
+
+/* Filter and Sort Container */
+.filter-sort-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .filter-sort-container input,
+    .filter-sort-container select,
+    .filter-sort-container button {
+        flex: 1;
+        max-width: 200px; /* Adjusted to fit better */
+        padding: 8px;
+        font-size: 0.9rem;
+        border: 1px solid #fbbf24;
+        border-radius: 5px;
+        outline: none;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .filter-sort-container button {
+        background-color: #f97316;
+        color: #ffffff;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .filter-sort-container button:hover {
+            background-color: #ea580c;
+        }
+
+    .filter-sort-container input:focus,
+    .filter-sort-container select:focus {
+        box-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+    }
+
+/* Transaction Summary Container */
+.transaction-summary-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-around; /* Center and space out */
+    margin-bottom: 20px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    background-color: #fff7ed;
+    padding: 15px;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 300px; /* Balanced width for cards */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+        color: #f97316;
+    }
+
+    .card p {
+        font-size: 1rem;
+        margin: 5px 0;
+        color: #4a4a4a;
+    }
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    margin-top: 20px;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    table thead {
+        background-color: #f97316;
+        color: #ffffff;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #fbbf24;
+    }
+
+    table th {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #fff7ed;
+    }
+
+    table tbody tr:hover {
+        background-color: #fde68a;
+    }
+
+    /* No Transactions Found Message */
+    table tbody .text-center {
+        text-align: center;
+        font-style: italic;
+        color: #6b7280;
+    }
+
+/* Pagination Styling */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .pagination button {
+        background-color: #f97316;
+        color: #ffffff;
+        border: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .pagination button:hover {
+            background-color: #ea580c;
+        }
+
+        .pagination button:disabled {
+            background-color: #fde68a;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-sort-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .transaction-summary-container {
+        flex-direction: column;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+
+    table th,
+    table td {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,241 @@
+﻿@page "/cashoutflow"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<CascadingParameter Name="SelectedCurrency" Type="string" />
+<CascadingParameter Name="ConversionRate" Type="decimal" />
+
+<h1 class="header">Cash Outflows</h1>
+
+<div class="summary-container">
+    <div class="summary-card">
+        <i class="fas fa-wallet icon"></i>
+        <h2>Total Balance</h2>
+        <p> @SelectedCurrencySign @ConvertCurrency(MainBalance + RemainingDebt)</p>
+    </div>
+    <div class="summary-card">
+        <i class="fas fa-piggy-bank icon"></i>
+        <h2>Account Balance</h2>
+        <p>@SelectedCurrencySign @ConvertCurrency(MainBalance)</p>
+    </div>
+    <div class="summary-card">
+        <i class="fas fa-arrow-circle-down icon"></i>
+        <h2>Total Outflows</h2>
+        <p>@SelectedCurrencySign @ConvertCurrency(TotalOutflows)</p>
+    </div>
+    <div class="summary-card">
+        <i class="fas fa-hand-holding-usd icon"></i>
+        <h2>Remaining Debt</h2>
+        <p>@SelectedCurrencySign @ConvertCurrency(RemainingDebt)</p>
+    </div>
+</div>
+
+<h2 class="form-title">Add New Outflow</h2>
+
+<EditForm Model="newOutflow" OnValidSubmit="HandleCashOutflowSubmit">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label for="amount"><i class="fas fa-coins"></i> Amount</label>
+        <InputNumber id="amount" @bind-Value="newOutflow.Debit" class="form-control" TValue="decimal" />
+    </div>
+
+    <div class="form-group">
+        <label for="tags"><i class="fas fa-tags"></i> Tags</label>
+        <select id="tags" class="form-control" @bind="SelectedTag">
+            <option value="">-- Select Tag --</option>
+            @foreach (var tag in DefaultTags)
+            {
+                <option value="@tag">@tag</option>
+            }
+        </select>
+        <InputText id="customTag" @bind-Value="CustomTag" placeholder="Or enter custom tag" class="form-control mt-2" />
+    </div>
+
+    <div class="form-group">
+        <label for="notes"><i class="fas fa-sticky-note"></i> Notes</label>
+        <InputTextArea id="notes" @bind-Value="newOutflow.Description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn-primary-wide"><i class="fas fa-plus-circle"></i> Add Outflow</button>
+    </div>
+</EditForm>
+
+<h2 class="form-title">Recent Outflows</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th> Amount</th>
+            <th> Tags</th>
+            <th> Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (PagedOutflows.Any())
+        {
+            @foreach (var outflow in PagedOutflows)
+            {
+                <tr>
+                    <td>@SelectedCurrencySign @ConvertCurrency(outflow.Debit)</td>
+                    <td>@(outflow.Tags != null && outflow.Tags.Any() ? string.Join(", ", outflow.Tags) : "None")</td>
+                    <td>@outflow.Description</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">No cash outflows recorded.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@code {
+    [CascadingParameter] public string SelectedCurrency { get; set; } = "USD";
+    [CascadingParameter] public decimal ConversionRate { get; set; } = 1;
+    [CascadingParameter] public string SelectedCurrencySign { get; set; } = "$";
+
+    private List<Transaction> CashOutflows = new();
+    private List<Transaction> PagedOutflows = new();
+    private decimal TotalOutflows = 0;
+    private decimal HighestOutflow = 0;
+    private decimal LowestOutflow = 0;
+    private Transaction newOutflow = new Transaction();
+    private string SelectedTag = "";
+    private string CustomTag = "";
+    private List<string> DefaultTags = new() { "Yearly", "Monthly", "Food", "Drinks", "Clothes", "Gadgets", "Miscellaneous", "Fuel", "Rent", "EMI", "Party" };
+
+    private decimal MainBalance = 0;
+    private decimal RemainingDebt = 0;
+
+    private int CurrentPage = 1;
+    private int ItemsPerPage = 10;
+    private int TotalPages = 1;
+
+    private bool IsFirstPage => CurrentPage == 1;
+    private bool IsLastPage => CurrentPage == TotalPages;
+
+   
+
+    protected override void OnInitialized()
+    {
+        var data = UserService.LoadUsers();
+        CashOutflows = data.Transactions.Where(t => t.Debit > 0).ToList();
+
+        if (CashOutflows.Any())
+        {
+            TotalOutflows = CashOutflows.Sum(t => t.Debit);
+            HighestOutflow = CashOutflows.Max(t => t.Debit);
+            LowestOutflow = CashOutflows.Min(t => t.Debit);
+        }
+
+        MainBalance = data.Transactions.Sum(t => t.Credit) - data.Transactions.Sum(t => t.Debit);
+        RemainingDebt = data.Debts.Where(d => d.Status == "Pending").Sum(d => d.RemainingAmount);
+
+        UpdatePagination();
+    }
+
+    private async Task HandleCashOutflowSubmit()
+    {
+        if (newOutflow.Debit <= 0)
+        {
+            await ShowAlert("Outflow amount must be greater than zero.");
+            return;
+        }
+
+        decimal totalBalance = MainBalance + RemainingDebt;
+
+        if (newOutflow.Debit > totalBalance)
+        {
+            bool redirectToDebt = await ShowConfirmation($"Insufficient total balance ({ConvertCurrency(totalBalance)}). Do you want to divert this transaction to debt management?");
+            if (redirectToDebt)
+            {
+                NavigationManager.NavigateTo("/debts");
+                return;
+            }
+        }
+
+        if (newOutflow.Debit > MainBalance)
+        {
+            decimal debtUsed = newOutflow.Debit - MainBalance;
+            MainBalance = 0;
+            RemainingDebt -= debtUsed;
+        }
+        else
+        {
+            MainBalance -= newOutflow.Debit;
+        }
+
+        if (!string.IsNullOrWhiteSpace(CustomTag))
+        {
+            newOutflow.Tags.Add(CustomTag);
+        }
+        else if (!string.IsNullOrWhiteSpace(SelectedTag))
+        {
+            newOutflow.Tags.Add(SelectedTag);
+        }
+
+        var data = UserService.LoadUsers();
+        newOutflow.Id = data.Transactions.Count + 1;
+
+        data.Transactions.Add(newOutflow);
+        UserService.SaveUsers(data);
+
+        CashOutflows.Add(newOutflow);
+        UpdatePagination();
+
+        newOutflow = new Transaction();
+        SelectedTag = "";
+        CustomTag = "";
+        await ShowAlert("Outflow added successfully.");
+    }
+
+    private void UpdatePagination()
+    {
+        TotalPages = (int)Math.Ceiling((double)CashOutflows.Count / ItemsPerPage);
+        CurrentPage = Math.Min(CurrentPage, TotalPages);
+        PagedOutflows = CashOutflows
+            .Skip((CurrentPage - 1) * ItemsPerPage)
+            .Take(ItemsPerPage)
+            .ToList();
+    }
+
+    private void NextPage()
+    {
+        if (!IsLastPage)
+        {
+            CurrentPage++;
+            UpdatePagination();
+        }
+    }
+
+    private void PreviousPage()
+    {
+        if (!IsFirstPage)
+        {
+            CurrentPage--;
+            UpdatePagination();
+        }
+    }
+
+    private async Task ShowAlert(string message)
+    {
+        await JSRuntime.InvokeVoidAsync("alert", message);
+    }
+
+    private async Task<bool> ShowConfirmation(string message)
+    {
+        return await JSRuntime.InvokeAsync<bool>("confirm", message);
+    }
+
+    private decimal ConvertCurrency(decimal amount)
+    {
+        return amount * ConversionRate;
+    }
+}

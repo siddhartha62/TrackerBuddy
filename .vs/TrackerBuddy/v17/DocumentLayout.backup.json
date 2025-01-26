@@ -1,0 +1,662 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\TrackerBuddy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\transactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\transactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\debtmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\debtmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\register.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\dashboard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\cashoutflow.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\cashoutflow.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\cashinflow.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\cashinflow.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\dashboard.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\dashboard.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\layout\\mainlayout.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\layout\\mainlayout.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\register.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\register.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\register.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\register.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\login.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\login.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\transactions.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\transactions.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\layout\\firstlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\layout\\firstlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\wwwroot\\dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\wwwroot\\dashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\.nuget\\packages\\epplus\\7.5.3\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\debtmanagement.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\debtmanagement.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\cashoutflow.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\cashoutflow.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\cashinflow.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\cashinflow.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\dashboard.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\dashboard.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\pages\\login.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\pages\\login.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\components\\layout\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\components\\layout\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\User\\.nuget\\packages\\epplus\\7.5.2\\readme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\models\\debt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\models\\debt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\models\\app.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\models\\app.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|c:\\users\\user\\desktop\\trackerbuddy\\trackerbuddy\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9D25DA0C-2873-4306-B065-8B9BEE5862E4}|TrackerBuddy\\TrackerBuddy.csproj|solutionrelative:trackerbuddy\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:17:58.148Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dashboard.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Dashboard.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Dashboard.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Dashboard.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Dashboard.razor",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:23:16.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Cashinflow.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashinflow.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Cashinflow.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashinflow.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Cashinflow.razor",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAAAGIAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:27:24.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Cashoutflow.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashoutflow.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Cashoutflow.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashoutflow.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Cashoutflow.razor",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:28:30.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Debtmanagement.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Debtmanagement.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Debtmanagement.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Debtmanagement.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Debtmanagement.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:30:17.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Transactions.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Transactions.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Transactions.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Transactions.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Transactions.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkBAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T16:07:35.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Register.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Register.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Register.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Register.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Register.razor",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowDIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-16T18:13:49.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Dashboard.razor.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Dashboard.razor.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Dashboard.razor.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Dashboard.razor.cs",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Dashboard.razor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T08:55:12.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Layout\\NavMenu.razor",
+              "ViewState": "AgIAADQAAAAAAAAAAAAmwEsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-16T18:09:34.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Login.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Login.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Login.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAC0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:16:56.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainLayout.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\MainLayout.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Layout\\MainLayout.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\MainLayout.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Layout\\MainLayout.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-16T10:13:08.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Register.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Register.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Register.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Register.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Register.razor.css",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAqwIQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-04T13:25:58.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Transactions.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Transactions.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Transactions.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Transactions.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Transactions.razor.css",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAqwMQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-04T16:10:10.576Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Login.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Login.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Login.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Login.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Login.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-16T08:59:03.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Register.razor.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Register.razor.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Register.razor.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Register.razor.cs",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Register.razor.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAgwEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:22:18.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\MauiProgram.cs",
+              "RelativeToolTip": "TrackerBuddy\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:16:39.413Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "TrackerBuddy\\wwwroot\\index.html",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\wwwroot\\index.html",
+              "RelativeToolTip": "TrackerBuddy\\wwwroot\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-01-16T14:19:34.078Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "FirstLayout.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\FirstLayout.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Layout\\FirstLayout.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\FirstLayout.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Layout\\FirstLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:17:41.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Dashboard.js",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\wwwroot\\Dashboard.js",
+              "RelativeDocumentMoniker": "TrackerBuddy\\wwwroot\\Dashboard.js",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\wwwroot\\Dashboard.js",
+              "RelativeToolTip": "TrackerBuddy\\wwwroot\\Dashboard.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-16T20:11:38.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "readme.txt",
+              "DocumentMoniker": "C:\\Users\\User\\.nuget\\packages\\epplus\\7.5.3\\readme.txt",
+              "RelativeDocumentMoniker": "..\\..\\.nuget\\packages\\epplus\\7.5.3\\readme.txt",
+              "ToolTip": "C:\\Users\\User\\.nuget\\packages\\epplus\\7.5.3\\readme.txt",
+              "RelativeToolTip": "..\\..\\.nuget\\packages\\epplus\\7.5.3\\readme.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-01-16T22:39:45.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Cashoutflow.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashoutflow.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Cashoutflow.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashoutflow.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Cashoutflow.razor.css",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAswKEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-04T13:28:59.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Debtmanagement.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Debtmanagement.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Debtmanagement.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Debtmanagement.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Debtmanagement.razor.css",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAkwLcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-04T13:30:41.949Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\App.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\App.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\App.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:29:43.692Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Cashinflow.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashinflow.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Cashinflow.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Cashinflow.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Cashinflow.razor.css",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAswLgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-04T13:28:01.731Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Dashboard.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Dashboard.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Dashboard.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Dashboard.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Dashboard.razor.css",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAswMAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-04T13:24:38.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "UserServices.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Services\\UserServices.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Services\\UserServices.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Services\\UserServices.cs",
+              "RelativeToolTip": "TrackerBuddy\\Services\\UserServices.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAkwAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T09:00:06.682Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\_Imports.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\_Imports.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:29:26.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\MainPage.xaml",
+              "RelativeDocumentMoniker": "TrackerBuddy\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\MainPage.xaml",
+              "RelativeToolTip": "TrackerBuddy\\MainPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-04T13:21:12.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Routes.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Routes.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Routes.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-04T13:29:32.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\App.razor",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\App.razor",
+              "RelativeToolTip": "TrackerBuddy\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-16T08:52:38.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\MainPage.xaml.cs",
+              "RelativeToolTip": "TrackerBuddy\\MainPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:45:39.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Login.razor.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Login.razor.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Pages\\Login.razor.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Pages\\Login.razor.cs",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Pages\\Login.razor.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAYwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:19:00.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "NavMenu.razor.css",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\NavMenu.razor.css",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Components\\Layout\\NavMenu.razor.css",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Components\\Layout\\NavMenu.razor.css",
+              "RelativeToolTip": "TrackerBuddy\\Components\\Layout\\NavMenu.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-01-16T10:12:43.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "readme.txt",
+              "DocumentMoniker": "C:\\Users\\User\\.nuget\\packages\\epplus\\7.5.2\\readme.txt",
+              "RelativeDocumentMoniker": "..\\..\\.nuget\\packages\\epplus\\7.5.2\\readme.txt",
+              "ToolTip": "C:\\Users\\User\\.nuget\\packages\\epplus\\7.5.2\\readme.txt",
+              "RelativeToolTip": "..\\..\\.nuget\\packages\\epplus\\7.5.2\\readme.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-01-16T09:28:46.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\User.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\User.cs",
+              "RelativeToolTip": "TrackerBuddy\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:12:03.313Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\Transaction.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Models\\Transaction.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\Transaction.cs",
+              "RelativeToolTip": "TrackerBuddy\\Models\\Transaction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:14:20.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Debt.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\Debt.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Models\\Debt.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\Debt.cs",
+              "RelativeToolTip": "TrackerBuddy\\Models\\Debt.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:14:27.622Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "App.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\App.cs",
+              "RelativeDocumentMoniker": "TrackerBuddy\\Models\\App.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\Models\\App.cs",
+              "RelativeToolTip": "TrackerBuddy\\Models\\App.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:14:37.01Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\App.xaml",
+              "RelativeDocumentMoniker": "TrackerBuddy\\App.xaml",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TrackerBuddy\\TrackerBuddy\\App.xaml",
+              "RelativeToolTip": "TrackerBuddy\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-04T13:21:18.693Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

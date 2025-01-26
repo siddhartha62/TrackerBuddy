@@ -1,0 +1,107 @@
+﻿@inherits LayoutComponentBase
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using TrackerBuddy.Models
+
+<CascadingValue Value="SelectedCurrency">
+    <CascadingValue Value="ConversionRate">
+        <CascadingValue Value="SelectedCurrencySign">
+
+        <div class="page">
+            <!-- Sidebar Section -->
+            <div class="sidebar">
+                <NavMenu />
+            </div>
+
+            <!-- Main Content Section -->
+            <main class="main" >
+                <!-- Header Section -->
+                <header class="top-row px-4 d-flex align-items-center justify-content-between">
+                    <div class="dropdown">
+
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="/profile">View Profile</a></li>
+                            <li><button class="logout-btn" @onclick="Logout">Logout</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- Currency Selector -->
+                    <div class="currency-selector">
+                        <label for="currency">Select Currency:</label>
+                        <select id="currency" @onchange="OnCurrencyChange">
+                            <option value="USD">USD</option>
+                            <option value="NRS">Nepali Rupees</option>
+                            <option value="EUR">Euros</option>
+                            <option value="GBP">British Pounds</option>
+                            <option value="AUD">Australian Dollars</option>
+                            <option value="CAD">Canadian Dollars</option>
+                            <option value="INR">Indian Rupees</option>
+                        </select>
+                    </div>
+                </header>
+
+                <!-- Page Content -->
+                <article class="content px-4">
+                    @Body
+                </article>
+            </main>
+        </div>
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    private string SelectedCurrency = "USD"; // Default currency
+    private decimal ConversionRate = 1; // Default conversion rate for USD
+    private string SelectedCurrencySign = "$"; // Default sign for USD
+
+    // Currency rates for conversion
+    private readonly Dictionary<string, decimal> CurrencyRates = new()
+    {
+        { "USD", 1m },
+        { "NRS",  134m },
+        { "EUR", 0.85m },
+        { "GBP", 0.75m },
+        { "AUD", 1.35m },
+        { "CAD", 1.25m },
+        { "INR", 74m }
+    };
+
+    // Currency symbols for display
+    private readonly Dictionary<string, string> CurrencySymbols = new()
+    {
+        { "USD", "$" },
+        { "NRS", "रु" },
+        { "EUR", "€" },
+        { "GBP", "£" },
+        { "AUD", "A$" },
+        { "CAD", "C$" },
+        { "INR", "₹" }
+    };
+
+
+    private void OnCurrencyChange(ChangeEventArgs e)
+    {
+        SelectedCurrency = e.Value?.ToString() ?? "USD";
+        ConversionRate = CurrencyRates.GetValueOrDefault(SelectedCurrency, 1m);
+        SelectedCurrencySign = CurrencySymbols.GetValueOrDefault(SelectedCurrency, "$");
+    }
+
+    private decimal ConvertToSelectedCurrency(decimal amount, string originalCurrency)
+    {
+        if (originalCurrency == SelectedCurrency)
+            return amount;
+
+        if (!CurrencyRates.ContainsKey(originalCurrency) || !CurrencyRates.ContainsKey(SelectedCurrency))
+            return amount;
+
+
+        decimal amountInUSD = amount / CurrencyRates[originalCurrency];
+        return amountInUSD * CurrencyRates[SelectedCurrency];
+    }
+
+    private void Logout()
+    {
+        NavigationManager.NavigateTo("/"); // Redirect to login
+    }
+}

@@ -1,0 +1,179 @@
+﻿@page "/cashinflow"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject IJSRuntime JSRuntime
+
+<CascadingParameter Name="SelectedCurrency" Type="string" />
+<CascadingParameter Name="ConversionRate" Type="decimal" />
+
+<h1 class="header">Cash Inflows</h1>
+<h2 class="subtitle">Log and manage your cash inflows effectively</h2>
+
+<!-- Summary Section -->
+<div class="summary-container">
+    <div class="summary-card">
+        <i class="fas fa-dollar-sign icon"></i>
+        <h4>Total Inflows</h4>
+        <p>@SelectedCurrencySign @ConvertCurrency(TotalInflows)</p>
+    </div>
+    <div class="summary-card">
+        <i class="fas fa-arrow-up icon"></i>
+        <h4>Highest Inflow</h4>
+        <p>@SelectedCurrencySign @ConvertCurrency(HighestInflow)</p>
+    </div>
+    <div class="summary-card">
+        <i class="fas fa-arrow-down icon"></i>
+        <h4>Lowest Inflow</h4>
+        <p>@SelectedCurrencySign @ConvertCurrency(LowestInflow)</p>
+    </div>
+</div>
+
+<!-- Form Section -->
+<div class="form-section">
+    <h2 class="form-title">Record Your Cash Inflow</h2>
+    <p class="form-description">Log your transactions to keep your finances on track.</p>
+    <form class="form-grid">
+        <div class="form-group">
+            <label for="credit"><i class="fas fa-coins"></i> Enter Amount</label>
+            <InputNumber id="credit" @bind-Value="newTransaction.Credit" class="form-control" TValue="decimal" />
+        </div>
+        <div class="form-group">
+            <label for="tags"><i class="fas fa-tags"></i> Assign Tags</label>
+            <select id="tags" class="form-control" @bind="SelectedTag">
+                <option value="">-- Select Default Tag --</option>
+                @foreach (var tag in DefaultTags)
+                {
+                    <option value="@tag">@tag</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="customTag"><i class="fas fa-tag"></i> Custom Tag</label>
+            <InputText id="customTag" @bind-Value="CustomTag" placeholder="Enter a unique tag" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="notes"><i class="fas fa-sticky-note"></i> Add Notes</label>
+            <InputTextArea id="notes" @bind-Value="newTransaction.Notes" class="form-control" />
+        </div>
+    </form>
+    <button type="submit" class="btn-primary-wide" @onclick="HandleCashInflowSubmit"><i class="fas fa-plus-circle"></i> Add Cash Inflow</button>
+</div>
+
+<!-- Table Section -->
+<div class="table-section">
+    <h2><i class="fas fa-history"></i> Transaction History</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Amount</th>
+                <th>Tags</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (CashInflows.Any())
+            {
+                @foreach (var inflow in CashInflows)
+                {
+                    <tr>
+                        <td>@inflow.Id</td>
+                        <td>@SelectedCurrencySign @ConvertCurrency(inflow.Credit)</td>
+                        <td>@string.Join(", ", inflow.Tags ?? new List<string>())</td>
+                        <td>@inflow.Notes</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4" class="text-center">No cash inflows recorded.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+
+    [CascadingParameter] public string SelectedCurrency { get; set; } = "USD";
+    [CascadingParameter] public decimal ConversionRate { get; set; } = 1;
+    [CascadingParameter] public string SelectedCurrencySign { get; set; } = "$";
+
+    private List<Transaction> CashInflows = new();
+    private decimal TotalInflows = 0;
+    private decimal HighestInflow = 0;
+    private decimal LowestInflow = 0;
+    private Transaction newTransaction = new Transaction();
+    private string SelectedTag = "";
+    private string CustomTag = "";
+    private List<string> DefaultTags = new() { "Yearly", "Monthly", "Food", "Drinks", "Clothes", "Gadgets", "Miscellaneous", "Fuel", "Rent", "EMI", "Party" };
+
+    
+
+    protected override void OnInitialized()
+    {
+        var data = UserService.LoadUsers();
+        CashInflows = data.Transactions.Where(t => t.Credit > 0).ToList();
+
+        if (CashInflows.Any())
+        {
+            TotalInflows = CashInflows.Sum(t => t.Credit);
+            HighestInflow = CashInflows.Max(t => t.Credit);
+            LowestInflow = CashInflows.Min(t => t.Credit);
+        }
+    }
+
+    private async Task HandleCashInflowSubmit()
+    {
+        if (newTransaction.Credit <= 0)
+        {
+            await ShowAlert("Invalid credit amount. Please enter a valid amount.");
+            return;
+        }
+
+        var data = UserService.LoadUsers();
+        newTransaction.Id = data.Transactions?.Count + 1 ?? 1;
+        newTransaction.Date = DateTime.Now;
+        newTransaction.Debit = 0;
+
+        if (newTransaction.Tags == null)
+        {
+            newTransaction.Tags = new List<string>();
+        }
+
+        if (!string.IsNullOrWhiteSpace(CustomTag))
+        {
+            newTransaction.Tags.Add(CustomTag);
+        }
+        else if (!string.IsNullOrWhiteSpace(SelectedTag))
+        {
+            newTransaction.Tags.Add(SelectedTag);
+        }
+
+        data.Transactions.Add(newTransaction);
+        UserService.SaveUsers(data);
+
+        CashInflows = data.Transactions.Where(t => t.Credit > 0).ToList();
+
+        TotalInflows = CashInflows.Sum(t => t.Credit);
+        HighestInflow = CashInflows.Max(t => t.Credit);
+        LowestInflow = CashInflows.Min(t => t.Credit);
+
+        newTransaction = new Transaction();
+        SelectedTag = "";
+        CustomTag = "";
+        await ShowAlert("Cash inflow added successfully!");
+    }
+
+    private async Task ShowAlert(string message)
+    {
+        await JSRuntime.InvokeVoidAsync("alert", message);
+    }
+
+    private decimal ConvertCurrency(decimal amount)
+    {
+        return amount * ConversionRate;
+    }
+  
+}

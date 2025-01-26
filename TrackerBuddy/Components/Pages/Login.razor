@@ -1,0 +1,37 @@
+﻿@page "/"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using TrackerBuddy.Components.Layout
+@layout FirstLayout
+
+<body>
+    <div class="login-wrapper">
+        <div class="welcome-section">
+            <h1>Welcome to the Tracker Buddy</h1>
+            <p>Tracker Buddy helps you seamlessly manage your finances, track expenses, and plan your budget with ease. Start your journey towards smarter financial decisions today.</p>
+        </div>
+        <div class="login-container">
+            <h3>User Login</h3>
+            <p>Login to your account</p>
+            @if (!string.IsNullOrEmpty(Message))
+            {
+                <p class="error-message">@Message</p>
+            }
+            <div class="input-container">
+                <span class="icon">&#x1F464;</span>
+                <input @bind="LoginUsername" placeholder="Username" />
+            </div>
+            <div class="input-container">
+                <span class="icon">&#x1F512;</span>
+                <input @bind="LoginPassword" placeholder="Password" type="password" />
+            </div>
+            <div class="options">
+                <label><input type="checkbox" /> Remember me</label>
+                <a href="/forgot-password">Forgot password?</a>
+            </div>
+            <button @onclick="LoginPage">Login</button>
+            <a href="/register" class="register-link">Register</a>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,196 @@
+/* General Styling */
+body[b-d3fj8pj8d4] {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f5f0;
+    margin: 0;
+    padding: 0;
+    color: #4a4a4a;
+}
+
+/* Page Title */
+h1[b-d3fj8pj8d4] {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #f97316; /* Orange color */
+}
+
+/* Filter and Sort Container */
+.filter-sort-container[b-d3fj8pj8d4] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .filter-sort-container input[b-d3fj8pj8d4],
+    .filter-sort-container select[b-d3fj8pj8d4],
+    .filter-sort-container button[b-d3fj8pj8d4] {
+        flex: 1;
+        max-width: 200px; /* Adjusted to fit better */
+        padding: 8px;
+        font-size: 0.9rem;
+        border: 1px solid #fbbf24;
+        border-radius: 5px;
+        outline: none;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .filter-sort-container button[b-d3fj8pj8d4] {
+        background-color: #f97316;
+        color: #ffffff;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .filter-sort-container button:hover[b-d3fj8pj8d4] {
+            background-color: #ea580c;
+        }
+
+    .filter-sort-container input:focus[b-d3fj8pj8d4],
+    .filter-sort-container select:focus[b-d3fj8pj8d4] {
+        box-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+    }
+
+/* Transaction Summary Container */
+.transaction-summary-container[b-d3fj8pj8d4] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-around; /* Center and space out */
+    margin-bottom: 20px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card[b-d3fj8pj8d4] {
+    background-color: #fff7ed;
+    padding: 15px;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 300px; /* Balanced width for cards */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover[b-d3fj8pj8d4] {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3[b-d3fj8pj8d4] {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+        color: #f97316;
+    }
+
+    .card p[b-d3fj8pj8d4] {
+        font-size: 1rem;
+        margin: 5px 0;
+        color: #4a4a4a;
+    }
+
+/* Table Styling */
+table[b-d3fj8pj8d4] {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    margin-top: 20px;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    table thead[b-d3fj8pj8d4] {
+        background-color: #f97316;
+        color: #ffffff;
+    }
+
+    table th[b-d3fj8pj8d4],
+    table td[b-d3fj8pj8d4] {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #fbbf24;
+    }
+
+    table th[b-d3fj8pj8d4] {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table tbody tr:nth-child(even)[b-d3fj8pj8d4] {
+        background-color: #fff7ed;
+    }
+
+    table tbody tr:hover[b-d3fj8pj8d4] {
+        background-color: #fde68a;
+    }
+
+    /* No Transactions Found Message */
+    table tbody .text-center[b-d3fj8pj8d4] {
+        text-align: center;
+        font-style: italic;
+        color: #6b7280;
+    }
+
+/* Pagination Styling */
+.pagination[b-d3fj8pj8d4] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .pagination button[b-d3fj8pj8d4] {
+        background-color: #f97316;
+        color: #ffffff;
+        border: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .pagination button:hover[b-d3fj8pj8d4] {
+            background-color: #ea580c;
+        }
+
+        .pagination button:disabled[b-d3fj8pj8d4] {
+            background-color: #fde68a;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-sort-container[b-d3fj8pj8d4] {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .transaction-summary-container[b-d3fj8pj8d4] {
+        flex-direction: column;
+    }
+
+    .card[b-d3fj8pj8d4] {
+        max-width: 100%;
+    }
+
+    table th[b-d3fj8pj8d4],
+    table td[b-d3fj8pj8d4] {
+        font-size: 0.9rem;
+    }
+}

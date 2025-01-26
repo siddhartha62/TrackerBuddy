@@ -1,0 +1,114 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #515151; /* Black background */
+    color: #ffffff;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #000000; /* Fully black */
+    color: #ffffff;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #ffa500; /* Orange text */
+}
+
+    .navbar-brand i {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+
+/* Navigation Section */
+.nav-section {
+    flex-grow: 1;
+}
+
+.nav-item {
+    margin: 0.5rem 0;
+}
+
+    .nav-item a {
+        display: flex;
+        align-items: center;
+        color: #ffffff; /* White text */
+        font-size: 1rem;
+        padding: 0.75rem;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .nav-item a:hover {
+            background-color: #ffffff; /* White hover background */
+            color: #000000; /* Black text on hover */
+            font-weight: bold;
+        }
+
+        .nav-item a.active {
+            background-color: #ffffff; /* White active background */
+            color: #000000; /* Black text for active item */
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+    .nav-item i {
+        font-size: 1.25rem;
+        margin-right: 0.75rem;
+        color: #ffa500; /* Orange icons */
+    }
+
+/* Profile Section */
+.profile-section {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #1c1c1c; /* Darker background for profile */
+    gap: 0.5rem; /* Adds space between elements */
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.logout-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #ffa500;
+    padding: 0.5rem;
+    border-radius: 50%; /* Circular button style */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .logout-icon:hover {
+        background-color: #ff4d4d; /* Red hover effect */
+        color: #ffffff;
+    }

@@ -1,0 +1,224 @@
+﻿@page "/Dashboard"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<h1 class="page-heading">Dashboard Overview</h1>
+
+<div class="main-content">
+    <!-- Graphs Section -->
+    <div class="graphs-container">
+        <div class="chart-container">
+            <h3>Bar Chart: Inflows vs Outflows</h3>
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Pie Chart: Inflows vs Outflows</h3>
+            <canvas id="myPieChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Metrics Section -->
+    <div class="stats">
+        <div class="card">
+            <h4>Total Inflows</h4>
+            <h1>@SelectedCurrencySign @ConvertCurrency(TotalInflows)</h1>
+        </div>
+        <div class="card">
+            <h4>Total Outflows</h4>
+            <h1>@SelectedCurrencySign @ConvertCurrency(TotalOutflows)</h1>
+        </div>
+        <div class="card">
+            <h4>Remaining Debt</h4>
+            <h1>@SelectedCurrencySign @ConvertCurrency(RemainingDebt)</h1>
+        </div>
+        <div class="card">
+            <h4>Total Debts</h4>
+            <h1>@SelectedCurrencySign @ConvertCurrency(TotalDebt)</h1>
+        </div>
+        <div class="card">
+            <h4>Cleared Debts</h4>
+            <h1>@SelectedCurrencySign @ConvertCurrency(TotalDebt - RemainingDebt)</h1>
+        </div>
+        <div class="card">
+            <h4>Net Balance</h4>
+            <h1>@SelectedCurrencySign @ConvertCurrency(TotalInflows - TotalOutflows + RemainingDebt)</h1>
+        </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <h4>@TransactionTitle</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Main Balance</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (DisplayedTransactions.Any())
+            {
+                @foreach (var transaction in DisplayedTransactions)
+                {
+                    <tr>
+                        <td>@transaction.Id</td>
+                        <td> @SelectedCurrencySign @ConvertCurrency(NetBalance)</td>
+                        <td> @SelectedCurrencySign @ConvertCurrency(transaction.Debit)</td>
+                        <td> @SelectedCurrencySign @ConvertCurrency(transaction.Credit)</td>
+                        <td>  @transaction.Date.ToString("MM/dd/yyyy")</td>
+                        <td>  @transaction.Description</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No transactions available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Transaction Toggle Buttons -->
+    <div class="transaction-toggle">
+        <button class="btn btn-primary" @onclick="ShowHighestTransactions">Highest Transactions</button>
+        <button class="btn btn-secondary" @onclick="ShowLowestTransactions">Lowest Transactions</button>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter] public string SelectedCurrency { get; set; } = "USD";
+    [CascadingParameter] public decimal ConversionRate { get; set; } = 1;
+    [CascadingParameter] public string SelectedCurrencySign { get; set; } = "$";
+
+
+  
+
+    private User? CurrentUser;
+    private AppData Data = new();
+    private decimal TotalDebt;
+    private decimal RemainingDebt;
+    private decimal TotalInflows;
+    private decimal TotalOutflows;
+    private decimal NetBalance;
+    private List<Debt> PendingDebts = new();
+    private List<Transaction> FilteredTransactions = new();
+    private List<Transaction> DisplayedTransactions = new();
+    private string TransactionTitle = "Recent Transactions";
+    private int TotalTransactions;
+    private decimal HighestTransaction;
+    private decimal LowestTransaction;
+    private decimal AverageTransaction;
+    private DateTime StartDate = DateTime.Today.AddMonths(-1);
+    private DateTime EndDate = DateTime.Today;
+    
+    
+
+    protected override void OnInitialized()
+    {
+        CurrentUser = UserService.GetCurrentUser();
+        if (CurrentUser == null)
+        {
+            NavigationManager.NavigateTo("/");
+            return;
+        }
+
+        Data = UserService.LoadUsers();
+        ApplyUserSpecificData();
+    }
+
+    private void ApplyUserSpecificData()
+    {
+        var userTransactions = Data.Transactions.Where(t => t.UserId == CurrentUser?.Id).ToList();
+
+        TotalInflows = userTransactions.Where(t => t.Credit > 0).Sum(t => t.Credit);
+        TotalOutflows = userTransactions.Where(t => t.Debit > 0).Sum(t => t.Debit);
+        RemainingDebt = Data.Debts.Where(d => d.UserId == CurrentUser?.Id && d.Status == "Pending").Sum(d => d.RemainingAmount);
+        TotalDebt = Data.Debts.Where(d => d.UserId == CurrentUser?.Id).Sum(d => d.Amount);
+        NetBalance = (TotalInflows - TotalOutflows) + RemainingDebt;
+
+        PendingDebts = Data.Debts.Where(d => d.UserId == CurrentUser?.Id && d.Status == "Pending").ToList();
+
+        if (userTransactions.Any())
+        {
+            TotalTransactions = userTransactions.Count;
+            HighestTransaction = userTransactions.Max(t => Math.Max(t.Credit, t.Debit));
+            LowestTransaction = userTransactions.Min(t => Math.Min(t.Credit, t.Debit));
+            AverageTransaction = userTransactions.Average(t => Math.Max(t.Credit, t.Debit));
+        }
+
+        FilteredTransactions = userTransactions.OrderByDescending(t => t.Date).ToList();
+        DisplayedTransactions = FilteredTransactions.Take(5).ToList();
+    }
+
+    private void ApplyDateFilter()
+    {
+        FilteredTransactions = Data.Transactions
+            .Where(t => t.UserId == CurrentUser?.Id && t.Date >= StartDate && t.Date <= EndDate)
+            .OrderByDescending(t => t.Date)
+            .ToList();
+    }
+
+    private void ShowHighestTransactions()
+    {
+        DisplayedTransactions = FilteredTransactions
+            .OrderByDescending(t => Math.Max(t.Credit, t.Debit))
+            .Take(5)
+            .ToList();
+        TransactionTitle = "Top 5 Highest Transactions";
+    }
+
+    private void ShowLowestTransactions()
+    {
+        DisplayedTransactions = FilteredTransactions
+            .OrderBy(t => Math.Min(t.Credit, t.Debit))
+            .Take(5)
+            .ToList();
+        TransactionTitle = "Top 5 Lowest Transactions";
+    }
+
+    
+
+    private decimal BarChartInflows;
+    private decimal BarChartOutflows;
+
+    private decimal PieChartInflows;
+    private decimal PieChartOutflows;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            BarChartInflows = TotalInflows;
+            BarChartOutflows = TotalOutflows;
+
+            PieChartInflows = TotalInflows;
+            PieChartOutflows = TotalOutflows;
+
+            var barChartData = new
+            {
+                labels = new[] { "Inflows", "Outflows" },
+                values = new[] { BarChartInflows, BarChartOutflows }
+            };
+
+            var pieChartData = new
+            {
+                labels = new[] { "Inflows", "Outflows" },
+                values = new[] { PieChartInflows, PieChartOutflows }
+            };
+
+            await JSRuntime.InvokeVoidAsync("initializeChart", barChartData);
+            await JSRuntime.InvokeVoidAsync("initializePieChartData", pieChartData);
+        }
+    }
+    private decimal ConvertCurrency(decimal amount)
+    {
+        return amount * ConversionRate;
+    }
+}

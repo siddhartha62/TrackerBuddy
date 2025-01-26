@@ -1,0 +1,77 @@
+﻿@inherits LayoutComponentBase
+@inject UserService UserService
+@inject NavigationManager NavigationManager
+@using TrackerBuddy.Models
+
+<div class="navbar" style=" background ">
+    <div class="navbar-brand">
+        <i class="bi bi-lightning-charge-fill universal-icon"></i> Tracker Buddy
+    </div>
+    <div class="nav-section">
+        <div class="nav-item">
+            <a href="/dashboard" class="nav-link @(IsActive("/dashboard") ? "active" : "")">
+                <i class="bi bi-house-door universal-icon"></i> Dashboard
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="/cashinflow" class="nav-link @(IsActive("/cashinflow") ? "active" : "")">
+                <i class="bi bi-arrow-down-circle universal-icon"></i> Cash Inflow
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="/cashoutflow" class="nav-link @(IsActive("/cashoutflow") ? "active" : "")">
+                <i class="bi bi-arrow-up-circle universal-icon"></i> Cash Outflow
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="/transactions" class="nav-link @(IsActive("/transactions") ? "active" : "")">
+                <i class="bi bi-receipt universal-icon"></i> Transactions
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="/debts" class="nav-link @(IsActive("/debts") ? "active" : "")">
+                <i class="bi bi-credit-card universal-icon"></i> Debt Management
+            </a>
+        </div>
+    </div>
+    <div class="profile-section">
+        <div class="profile-info">
+            <i class="bi bi-person-circle universal-icon">Welcome, @CurrentUser?.Username</i>
+            
+        </div>
+       
+    </div>
+    <a class="logout-icon" @onclick="Logout">
+        <i class="bi bi-box-arrow-right universal-icon"></i>
+    </a>
+</div>
+
+@code {
+    private void Logout()
+    {
+        NavigationManager.NavigateTo("/"); // Redirect to login
+    }
+
+    private bool IsActive(string href)
+    {
+        var currentUri = NavigationManager.Uri.Replace(NavigationManager.BaseUri, "/").TrimEnd('/');
+        href = href.TrimStart('/');
+
+        return currentUri.Equals(href, StringComparison.OrdinalIgnoreCase);
+
+
+    }
+    private User CurrentUser = new User();
+    private string SelectedCurrency = "USD"; // Default currency
+    private decimal ConversionRate = 1; // Default conversion rate for USD
+
+    protected override void OnInitialized()
+    {
+        CurrentUser = UserService.GetCurrentUser();
+
+        if (CurrentUser == null)
+        {
+            NavigationManager.NavigateTo("/"); // Redirect to login if not authenticated
+        }
+    }
+}

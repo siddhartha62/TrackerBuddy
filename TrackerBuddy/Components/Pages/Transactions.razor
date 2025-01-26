@@ -1,0 +1,353 @@
+﻿@page "/transactions"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject IJSRuntime JSRuntime
+@using iText.Layout.Properties;
+
+<CascadingParameter Name="SelectedCurrency" Type="string" />
+<CascadingParameter Name="ConversionRate" Type="decimal" />
+
+<h1>Transactions</h1>
+
+<div class="header-container">
+    <div class="header-container">
+        <div class="actions">
+            <button class="btn btn-danger" @onclick="OpenDeleteModal">
+                <i class="fas fa-trash-alt"></i> Delete Transactions
+            </button>
+            <button class="btn btn-success" @onclick="ExportToExcel">
+                <i class="fas fa-file-excel"></i> Export to Excel
+            </button>
+        </div>
+        <div class="filter-button">
+            <button class="btn btn-primary" @onclick="FilterTransactions">
+                <i class="fas fa-filter"></i> Filter Transactions
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div class="filter-sort-container">
+    <input type="text" @bind="SearchQuery" placeholder="Search by title or description..." class="form-control" />
+    <select @bind="SelectedType" class="form-control">
+        <option value="">All Types</option>
+        <option value="Inflow">Inflow</option>
+        <option value="Outflow">Outflow</option>
+        <option value="Debt">Debt</option>
+    </select>
+    <select @bind="SelectedTag" class="form-control">
+        <option value="">-- Select Tag --</option>
+        @foreach (var tag in DefaultTags)
+        {
+            <option value="@tag">@tag</option>
+        }
+    </select>
+    <input type="date" @bind="StartDate" class="form-control" />
+    <input type="date" @bind="EndDate" class="form-control" />
+    <select @bind="SortBy" class="form-control">
+        <option value="DateAsc">Sort by Date (Asc)</option>
+        <option value="DateDesc">Sort by Date (Desc)</option>
+        <option value="TitleAsc">Sort by Title (Asc)</option>
+        <option value="TitleDesc">Sort by Title (Desc)</option>
+    </select>
+    <button class="btn btn-primary" @onclick="FilterTransactions">Filter Transactions</button>
+</div>
+
+<div class="transaction-summary-container">
+    <div class="card">
+        <h3><i class="fas fa-chart-line"></i> Transaction Summary</h3>
+        <p><strong>Total Transactions:</strong> @TotalTransactions</p>
+        <p><strong>Net Total:</strong> @SelectedCurrencySign @ConvertCurrency(NetTotal)</p>
+    </div>
+
+    <div class="card">
+        <h3><i class="fas fa-arrow-up"></i> Highest Transactions</h3>
+        <p><strong>Inflow:</strong>@SelectedCurrencySign @ConvertCurrency(HighestInflow)</p>
+        <p><strong>Outflow:</strong> @SelectedCurrencySign @ConvertCurrency(HighestOutflow)</p>
+    </div>
+
+    <div class="card">
+        <h3><i class="fas fa-arrow-down"></i> Lowest Transactions</h3>
+        <p><strong>Inflow:</strong>@SelectedCurrencySign @ConvertCurrency(LowestInflow)</p>
+        <p><strong>Outflow:</strong> @SelectedCurrencySign @ConvertCurrency(LowestOutflow)</p>
+    </div>
+    
+</div>
+
+<h2>Transaction History</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Tags</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (PagedTransactions != null && PagedTransactions.Any())
+        {
+            @foreach (var transaction in PagedTransactions)
+            {
+                <tr>
+                    <td>@transaction.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@transaction.Title</td>
+                    <td>@GetTransactionType(transaction)</td>
+                    <td>@(transaction.Tags != null && transaction.Tags.Any() ? string.Join(", ", transaction.Tags) : "None")</td>
+                    <td>@SelectedCurrencySign @ConvertCurrency(GetTransactionAmount(transaction))</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No transactions available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<!-- Delete Modal -->
+@if (IsDeleteModalOpen)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <h4>Select Transactions to Delete</h4>
+            <p>Select transactions from the list below to delete them.</p>
+            <div class="form-group">
+                <select multiple class="form-control" @bind="SelectedTransactionIds">
+                    @foreach (var transaction in AllTransactions)
+                    {
+                        <option value="@transaction.Id.ToString()">@transaction.Title (@transaction.Date.ToString("MM/dd/yyyy"))</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" @onclick="ConfirmDelete">Delete Selected</button>
+                <button class="btn btn-secondary" @onclick="CloseDeleteModal">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<Transaction> AllTransactions = new();
+    private List<Transaction> FilteredTransactions = new();
+    private List<Transaction> PagedTransactions = new();
+    private List<int> SelectedTransactionIds = new(); // Updated to List<int>
+    private List<string> DefaultTags = new() { "Yearly", "Monthly", "Food", "Drinks", "Clothes", "Gadgets", "Miscellaneous", "Fuel", "Rent", "EMI", "Party" };
+
+    private string SearchQuery = "";
+    private string SelectedType = "";
+    private string SelectedTag = "";
+    private DateTime? StartDate = null;
+    private DateTime? EndDate = null;
+    private string SortBy = "DateDesc";
+
+    private int TotalTransactions = 0;
+    private decimal NetTotal = 0;
+
+    private decimal HighestInflow = 0;
+    private decimal LowestInflow = 0;
+    private decimal HighestOutflow = 0;
+    private decimal LowestOutflow = 0;
+
+    private int CurrentPage = 1;
+    private int ItemsPerPage = 20;
+    private int TotalPages = 1;
+
+    private bool IsFirstPage => CurrentPage == 1;
+    private bool IsLastPage => CurrentPage == TotalPages;
+    private bool IsDeleteModalOpen = false;
+
+    [CascadingParameter] public string SelectedCurrency { get; set; } = "USD";
+    [CascadingParameter] public decimal ConversionRate { get; set; } = 1;
+    [CascadingParameter] public string SelectedCurrencySign { get; set; } = "$";
+
+    protected override void OnInitialized()
+    {
+        var data = UserService.LoadUsers();
+        AllTransactions = data?.Transactions ?? new List<Transaction>();
+
+        CalculateSummary();
+        FilteredTransactions = AllTransactions.ToList();
+        UpdatePagination();
+    }
+
+    private string GetTransactionType(Transaction transaction)
+    {
+        return transaction.Type switch
+        {
+            "Debt" => "Debt",
+            _ => transaction.Debit > 0 ? "Outflow" : "Inflow"
+        };
+    }
+
+    private decimal GetTransactionAmount(Transaction transaction)
+    {
+        return transaction.Debit > 0 ? transaction.Debit : transaction.Credit;
+    }
+
+    private void CalculateSummary()
+    {
+        TotalTransactions = AllTransactions.Count;
+        NetTotal = AllTransactions.Sum(t => t.Credit - t.Debit);
+
+        HighestInflow = AllTransactions.Where(t => t.Credit > 0).DefaultIfEmpty(new Transaction()).Max(t => t.Credit);
+        LowestInflow = AllTransactions.Where(t => t.Credit > 0).DefaultIfEmpty(new Transaction { Credit = decimal.MaxValue }).Min(t => t.Credit);
+
+        HighestOutflow = AllTransactions.Where(t => t.Debit > 0).DefaultIfEmpty(new Transaction()).Max(t => t.Debit);
+        LowestOutflow = AllTransactions.Where(t => t.Debit > 0).DefaultIfEmpty(new Transaction { Debit = decimal.MaxValue }).Min(t => t.Debit);
+    }
+
+    private async Task FilterTransactions()
+    {
+        FilteredTransactions = AllTransactions;
+
+        if (!string.IsNullOrWhiteSpace(SearchQuery))
+        {
+            FilteredTransactions = FilteredTransactions
+                .Where(t => t.Title?.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) == true ||
+                            t.Description?.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) == true)
+                .ToList();
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelectedType))
+        {
+            FilteredTransactions = FilteredTransactions
+                .Where(t => SelectedType == "Inflow" && t.Credit > 0 ||
+                            SelectedType == "Outflow" && t.Debit > 0 ||
+                            SelectedType == "Debt" && t.Type == "Debt")
+                .ToList();
+        }
+
+        if (!string.IsNullOrWhiteSpace(SelectedTag))
+        {
+            FilteredTransactions = FilteredTransactions
+                .Where(t => t.Tags != null && t.Tags.Contains(SelectedTag))
+                .ToList();
+        }
+
+        if (StartDate.HasValue && EndDate.HasValue)
+        {
+            FilteredTransactions = FilteredTransactions
+                .Where(t => t.Date >= StartDate && t.Date <= EndDate)
+                .ToList();
+        }
+
+        FilteredTransactions = SortBy switch
+        {
+            "DateAsc" => FilteredTransactions.OrderBy(t => t.Date).ToList(),
+            "DateDesc" => FilteredTransactions.OrderByDescending(t => t.Date).ToList(),
+            "TitleAsc" => FilteredTransactions.OrderBy(t => t.Title).ToList(),
+            "TitleDesc" => FilteredTransactions.OrderByDescending(t => t.Title).ToList(),
+            _ => FilteredTransactions
+        };
+
+        UpdatePagination();
+    }
+
+    private void UpdatePagination()
+    {
+        TotalPages = (int)Math.Ceiling((double)FilteredTransactions.Count / ItemsPerPage);
+        CurrentPage = Math.Min(CurrentPage, TotalPages);
+        PagedTransactions = FilteredTransactions
+            .Skip((CurrentPage - 1) * ItemsPerPage)
+            .Take(ItemsPerPage)
+            .ToList();
+    }
+
+    private void NextPage()
+    {
+        if (!IsLastPage)
+        {
+            CurrentPage++;
+            UpdatePagination();
+        }
+    }
+
+    private void PreviousPage()
+    {
+        if (!IsFirstPage)
+        {
+            CurrentPage--;
+            UpdatePagination();
+        }
+    }
+
+    private void OpenDeleteModal()
+    {
+        IsDeleteModalOpen = true;
+    }
+
+    private void CloseDeleteModal()
+    {
+        IsDeleteModalOpen = false;
+        SelectedTransactionIds.Clear();
+    }
+
+    private void ConfirmDelete()
+    {
+        // Remove selected transactions
+        AllTransactions.RemoveAll(t => SelectedTransactionIds.Contains(t.Id));
+        FilteredTransactions.RemoveAll(t => SelectedTransactionIds.Contains(t.Id));
+        UserService.SaveUsers(new AppData { Transactions = AllTransactions });
+        CalculateSummary();
+        UpdatePagination();
+        CloseDeleteModal();
+    }
+
+    private async Task ShowAlert(string message)
+    {
+        await JSRuntime.InvokeVoidAsync("alert", message);
+    }
+
+    private decimal ConvertCurrency(decimal amount)
+    {
+        return amount * ConversionRate;
+    }
+
+    private async Task ExportToExcel()
+    {
+        using var package = new OfficeOpenXml.ExcelPackage();
+        var worksheet = package.Workbook.Worksheets.Add("Transactions");
+
+        // Add header
+        worksheet.Cells[1, 1].Value = "Date";
+        worksheet.Cells[1, 2].Value = "Title";
+        worksheet.Cells[1, 3].Value = "Type";
+        worksheet.Cells[1, 4].Value = "Tags";
+        worksheet.Cells[1, 5].Value = "Amount";
+
+        // Add transactions
+        for (int i = 0; i < AllTransactions.Count; i++)
+        {
+            var transaction = AllTransactions[i];
+            worksheet.Cells[i + 2, 1].Value = transaction.Date.ToString("MM/dd/yyyy");
+            worksheet.Cells[i + 2, 2].Value = transaction.Title;
+            worksheet.Cells[i + 2, 3].Value = GetTransactionType(transaction);
+            worksheet.Cells[i + 2, 4].Value = transaction.Tags != null ? string.Join(", ", transaction.Tags) : "None";
+            worksheet.Cells[i + 2, 5].Value = GetTransactionAmount(transaction);
+        }
+
+        // Format as table
+        var tableRange = worksheet.Cells[1, 1, AllTransactions.Count + 1, 5];
+        worksheet.Tables.Add(tableRange, "TransactionTable");
+        worksheet.Cells.AutoFitColumns();
+
+        // Create file
+        var excelData = package.GetAsByteArray();
+        var fileName = "Transactions.xlsx";
+        await JSRuntime.InvokeVoidAsync("saveAsFile", fileName, Convert.ToBase64String(excelData));
+    }
+
+   
+
+
+}
+
+

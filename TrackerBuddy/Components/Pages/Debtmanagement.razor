@@ -1,0 +1,254 @@
+﻿@page "/debts"
+@using TrackerBuddy.Models
+@inject UserService UserService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<CascadingParameter Name="SelectedCurrency" Type="string" />
+<CascadingParameter Name="ConversionRate" Type="decimal" />
+
+<h1>Debt Management</h1>
+
+<div class="debt-summary">
+    <div class="card">
+        <h4>Total Debt</h4>
+        <p>@SelectedCurrencySign @ConvertCurrency(TotalDebt)</p>
+        <small>Total debt taken</small>
+    </div>
+    <div class="card">
+        <h4>Pending Amount</h4>
+        <p>@SelectedCurrencySign @ConvertCurrency(PendingDebt)</p>
+        <small>Remaining debt yet to be cleared</small>
+    </div>
+    <div class="card">
+        <h4>Cleared Debt</h4>
+        <p>@SelectedCurrencySign @ConvertCurrency(ClearedDebt)</p>
+        <small>Debt amount that has been cleared</small>
+    </div>
+    <div class="card">
+        <h4>Account Balance</h4>
+        <p>@SelectedCurrencySign @ConvertCurrency(AccountBalance)</p>
+    </div>
+</div>
+
+<!-- Enhanced Debt Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Source</th>
+            <th>Total Amount</th>
+            <th>Pending Amount</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var debt in Data.Debts.OrderBy(d => d.DueDate))
+        {
+            <tr class="@GetRowClass(debt.Status)">
+                <td>
+                    <i class="fas fa-file-invoice-dollar"></i> @debt.Source
+                </td>
+                <td>@SelectedCurrencySign @ConvertCurrency(debt.Amount)</td>
+                <td>@SelectedCurrencySign @ConvertCurrency(debt.Amount - debt.PaidAmount)</td>
+                <td>@debt.DueDate.ToString("MM/dd/yyyy")</td>
+                <td>
+                    <span class="@GetStatusClass(debt.Status)">
+                        @debt.Status
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-sm" @onclick="() => OpenPayDebtModal(debt.Id)" 
+                            disabled="@((debt.Status == "Cleared"))" title="Pay this debt">
+                        <i class="fas fa-money-check-alt"></i> Pay
+                    </button>
+                    @if (debt.Status == "Cleared")
+                    {
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteDebt(debt.Id)" title="Delete cleared debt">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Add New Debt</h2>
+<EditForm Model="newDebt" OnValidSubmit="HandleDebtSubmit">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label for="source">Source</label>
+        <InputText id="source" @bind-Value="newDebt.Source" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="amount">Total Amount</label>
+        <InputNumber id="amount" @bind-Value="newDebt.Amount" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <InputDate id="dueDate" @bind-Value="newDebt.DueDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Debt</button>
+    </div>
+</EditForm>
+
+<!-- Pay Debt Modal -->
+@if (IsPayDebtModalOpen)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <h4>Pay Debt</h4>
+            <p>Enter the amount to pay:</p>
+            <EditForm Model="PayDebtAmount" OnValidSubmit="SubmitPayDebt">
+                <DataAnnotationsValidator />
+                <div class="form-group">
+                    <label for="payAmount">Amount</label>
+                    <InputNumber id="payAmount" @bind-Value="PayDebtAmount" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Pay</button>
+                    <button type="button" class="btn btn-secondary" @onclick="ClosePayDebtModal">Cancel</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+
+@code {
+    private AppData Data = new AppData();
+    private Debt newDebt = new Debt { Status = "Pending" };
+
+    private decimal TotalDebt = 0;
+    private decimal PendingDebt = 0;
+    private decimal ClearedDebt = 0;
+    private decimal AccountBalance = 0;
+
+    private decimal PayDebtAmount = 0;
+    private int SelectedDebtId = 0;
+    private bool IsPayDebtModalOpen = false;
+
+    [CascadingParameter] public string SelectedCurrency { get; set; } = "USD";
+    [CascadingParameter] public decimal ConversionRate { get; set; } = 1;
+    [CascadingParameter] public string SelectedCurrencySign { get; set; } = "$";
+
+    protected override void OnInitialized()
+    {
+        Data = UserService.LoadUsers();
+        CalculateDebtSummary();
+    }
+
+    private void CalculateDebtSummary()
+    {
+        TotalDebt = Data.Debts.Sum(d => d.Amount);
+        PendingDebt = Data.Debts.Sum(d => d.Amount - d.PaidAmount);
+        ClearedDebt = Data.Debts.Sum(d => d.PaidAmount);
+        AccountBalance = Data.Transactions.Sum(t => t.Credit) - Data.Transactions.Sum(t => t.Debit);
+        UserService.SaveUsers(Data);
+    }
+
+    private async Task HandleDebtSubmit()
+    {
+        if (newDebt.Amount <= 0)
+        {
+            await ShowAlert("Invalid debt amount.");
+            return;
+        }
+
+        newDebt.Id = Data.Debts.Count + 1;
+        newDebt.Status = "Pending";
+        Data.Debts.Add(newDebt);
+        CalculateDebtSummary();
+        newDebt = new Debt { Status = "Pending" };
+    }
+
+    private void OpenPayDebtModal(int debtId)
+    {
+        SelectedDebtId = debtId;
+        IsPayDebtModalOpen = true;
+    }
+
+    private void ClosePayDebtModal()
+    {
+        IsPayDebtModalOpen = false;
+        PayDebtAmount = 0;
+    }
+
+    private async Task SubmitPayDebt()
+    {
+        var selectedDebt = Data.Debts.FirstOrDefault(d => d.Id == SelectedDebtId);
+        if (selectedDebt == null)
+        {
+            await ShowAlert("Debt not found.");
+            return;
+        }
+
+        if (PayDebtAmount <= 0)
+        {
+            await ShowAlert("Enter a valid amount.");
+            return;
+        }
+
+        if (PayDebtAmount > (selectedDebt.Amount - selectedDebt.PaidAmount))
+        {
+            await ShowAlert("Payment exceeds pending debt amount.");
+            return;
+        }
+
+        if (PayDebtAmount > AccountBalance)
+        {
+            await ShowAlert("Insufficient balance to pay the debt.");
+            return;
+        }
+
+        AccountBalance -= PayDebtAmount;
+        selectedDebt.PaidAmount += PayDebtAmount;
+
+        if (selectedDebt.PaidAmount >= selectedDebt.Amount)
+        {
+            selectedDebt.Status = "Cleared";
+        }
+
+        CalculateDebtSummary();
+        UserService.SaveUsers(Data);
+        await ShowAlert("Debt payment successful.");
+        ClosePayDebtModal();
+    }
+
+    private void DeleteDebt(int debtId)
+    {
+        var debtToRemove = Data.Debts.FirstOrDefault(d => d.Id == debtId);
+        if (debtToRemove != null)
+        {
+            Data.Debts.Remove(debtToRemove);
+            CalculateDebtSummary();
+            UserService.SaveUsers(Data);
+        }
+    }
+
+    private decimal ConvertCurrency(decimal amount)
+    {
+        return amount * ConversionRate;
+    }
+
+    private string GetRowClass(string status)
+    {
+        return status == "Cleared" ? "highlight-row" : string.Empty;
+    }
+
+    private string GetStatusClass(string status)
+    {
+        return status == "Cleared" ? "cleared" : "pending";
+    }
+
+    private async Task ShowAlert(string message)
+    {
+        await JSRuntime.InvokeVoidAsync("alert", message);
+    }
+}
